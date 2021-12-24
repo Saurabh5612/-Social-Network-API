@@ -1,72 +1,72 @@
-const {Schema,model,Types} = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 
-// reactions schema
-
+// ReactionsSchema
 const ReactionsSchema = new Schema(
     {
-        reactionId:{
+        reactionId: {
             type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId()
+            default: ()=> new Types.ObjectId()
         },
-        reactionBody:{
+        reactionBody: {
             type: String,
-            requred: true,
-            maxlength:280
+            required: true,
+            maxlength: 280
         },
-        username:{
-            type:String,
-            requred:true
+        username: {
+            type: String,
+            required: true
         },
-        createdAt:{
+        createdAt: {
             type: Date,
-            default:Date.now,
-            get:(createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
-
+            default: Date.now,
+            get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
         }
-
     },
     {
-
-        toJSON:{
-            getters:true
+        toJSON: {
+            getters: true
         }
     }
 );
-// thoughts Schema
+
+// ThoughtsSchema
 const ThoughtsSchema = new Schema(
     {
-        thoughtText :{
-            type:String,
-            requred:1,
-            maxlength:280
+        thoughtText: {
+            type: String,
+            required: true,
+            minlength: 1,
+            maxlength: 280
         },
-        createdAt:{
-            type:Date,
-            default:Date.now,
-            get:(createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
-
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
         },
-        // use reactionsSchema to validate date
+        username: {
+            type: String,
+            required: true
+        },
+        // Use ReactionsSchema to validate data
         reactions: [ReactionsSchema]
     },
     {
-        toJSON:{
+        toJSON: {
             virtuals: true,
-            getters:true
+            getters: true
         },
-        id:false
+        id: false
     }
 );
 
 // get total count of reactions
-
-ThoughtsSchema.virtuals('reactionCount').get(function(){
+ThoughtsSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
-
 });
 
-// create the Thoghts model using the thoughrs schema
-const Thoughts = model('Thoughts',ThoughtsSchema);
+// create the Thoughts model using the Thoughts Schema
+const Thoughts = model('Thoughts', ThoughtsSchema);
 
-module.exporys = Thoughts;
+
+module.exports = Thoughts;
