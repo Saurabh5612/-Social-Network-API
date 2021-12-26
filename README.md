@@ -5,11 +5,7 @@ The application is meant to build an API for a social network web application wh
 ## Use
 AS A social media startup I WANT an API for my social network that uses a NoSQL database SO THAT my website can handle large amounts of unstructured data users can share their thoughts, react to friends’ thoughts, and create a friend list.
 
-## Technologies
-Mogoose ODM
-MongoDB database
-Express.js
-JavaScript Date object to format timestamps
+
 ## Acceptance Criteria
 GIVEN a social network API
 
@@ -34,4 +30,9 @@ Download the code Run npm install
 ## Test
 All routes were tested in Insomnia.
 ## Demo
+https://watch.screencastify.com/v/HFyutNZT2tf5ckKPcXJG part-1
+
+https://watch.screencastify.com/v/4enSHdt8gHZewFsPPOcR part-2
+
+https://watch.screencastify.com/v/4DUq5aFoG5E6S0pzWWYU part-3
 
